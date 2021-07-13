@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<table class="table table-hover">
+  <tr>
+    <td colspan="3"><h1>Danh sách thành phố</h1></td>
+    <td><a class="btn btn-primary"  th:href="@{/cities/add-new}">Thêm thành phố</a></td>
+  </tr>
+  <tr>
+    <th>#</th>
+    <th>Thành Phố </th>
+    <th>Quốc gia</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr th:each="city,row:${cities}">
+
+    <td th:text="${row.count}"></td>
+
+    <td><a th:href="@{/cities/show-city/__${city.getId()}__}" th:text="${city.getName()}"></a></td>
+
+    <td th:text="${city.getCountry().countryName}"></td>
+
+    <td><a class="btn btn-primary" th:href="@{/cities/update/__${city.id}__}">Update</a></td>
+
+    <td><a  class="btn btn-danger" th:href="@{cities/delete/__${city.id}__}"
+            onclick="return confirm('Are you sure to delete?')">Delete</a></td>
+  </tr>
+
+</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
